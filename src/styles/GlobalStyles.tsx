@@ -3,9 +3,6 @@ import React from 'react';
 import { css, GlobalStyles as BaseStyles } from 'twin.macro';
 
 const customStyles = css({
-  html: {
-    fontFamily: 'Noto Sans',
-  },
   '#root > button': {
     backgroundColor: '#25262b',
   },
