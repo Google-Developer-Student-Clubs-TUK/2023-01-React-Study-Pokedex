@@ -4,12 +4,17 @@ import React from 'react';
 
 import Navigation from '@/components/Navigation';
 
-import { useGetPokemonBasicInfoQuery, useNavigation } from '../../hooks';
+import {
+  useBackgroundColor,
+  useGetPokemonBasicInfoQuery,
+  useNavigation,
+} from '../../hooks';
 import { createLeadingZero } from '../../utils';
 
 const PokedexPicture = () => {
   const { currentNumber, handleNext, handlePrevious } = useNavigation();
   const { data } = useGetPokemonBasicInfoQuery(currentNumber);
+  const { handleLoadImage } = useBackgroundColor();
   // TODO: Image 처리하기
 
   return (
@@ -22,6 +27,7 @@ const PokedexPicture = () => {
           tw='absolute inset-0 w-full h-full object-contain object-center'
           src={data?.image}
           alt={data?.name ?? ''}
+          onLoad={handleLoadImage}
           crossOrigin='anonymous'
         />
       </div>
