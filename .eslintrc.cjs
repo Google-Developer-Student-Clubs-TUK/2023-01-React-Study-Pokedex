@@ -43,7 +43,6 @@ module.exports = {
     'react/jsx-filename-extension': [1, { extensions: ['tsx'] }],
     'no-console': ['warn', { allow: ['error'] }],
     '@typescript-eslint/array-type': ['error', { default: 'array-simple' }],
-    'react/react-in-jsx-scope': 'off',
     'no-use-before-define': 'off',
     '@typescript-eslint/no-use-before-define': 'off',
     '@typescript-eslint/no-explicit-any': 'off',
