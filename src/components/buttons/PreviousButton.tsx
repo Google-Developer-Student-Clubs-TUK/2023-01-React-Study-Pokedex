@@ -3,6 +3,7 @@ import 'twin.macro';
 import React from 'react';
 
 import { PreviousIcon } from '../icons';
+import Button from './Button';
 
 type PreviousButtonProps = Omit<
   React.ButtonHTMLAttributes<HTMLButtonElement>,
@@ -10,12 +11,9 @@ type PreviousButtonProps = Omit<
 >;
 
 const PreviousButton = (props: PreviousButtonProps) => (
-  <button
-    tw='text-black/80 hover:bg-black/5 w-8 h-8 flex justify-center items-center rounded-md'
-    type='button'
-    {...props}>
+  <Button type='button' {...props}>
     <PreviousIcon />
-  </button>
+  </Button>
 );
 
 export default PreviousButton;
