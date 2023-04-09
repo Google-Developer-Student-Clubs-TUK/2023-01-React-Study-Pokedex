@@ -57,5 +57,6 @@ module.exports = {
     'simple-import-sort/exports': 'error',
     'import/no-extraneous-dependencies': 'off',
     'import/prefer-default-export': 'off',
+    'no-nested-ternary': 'off',
   },
 };
