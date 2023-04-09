@@ -37,4 +37,5 @@ export default defineConfig({
   build: {
     outDir: './build',
   },
+  base: '/2023-01-React-Study-Pokedex/',
 });
