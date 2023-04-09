@@ -5,7 +5,6 @@ import { countAtom } from '../atoms/count';
 const useNavigation = () => {
   const [count, setCount] = useAtom(countAtom);
 
-  // TODO:  min max error 처리하기
   const handlePrevious = () => {
     setCount(count - 1);
   };
