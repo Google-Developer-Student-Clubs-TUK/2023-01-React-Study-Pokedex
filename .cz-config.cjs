@@ -9,7 +9,7 @@ module.exports = {
     },
     { value: ':white_check_mark: test', name: '✅ test:\t테스트 코드 작성' },
     {
-      value: '::rocket: deploy',
+      value: ':rocket: deploy',
       name: '🚀 deploy:\t 배포 작업',
     },
     {
