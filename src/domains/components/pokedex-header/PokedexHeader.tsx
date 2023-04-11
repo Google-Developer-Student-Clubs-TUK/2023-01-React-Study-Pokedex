@@ -7,7 +7,7 @@ import { createLeadingZero } from '@/domains/utils';
 
 const PokedexHeader = () => {
   const { currentNumber } = useNavigation();
-  const { data } = useGetPokemonBasicInfoQuery(currentNumber);
+  const { data, isLoading } = useGetPokemonBasicInfoQuery(currentNumber);
 
   return (
     <>
@@ -20,7 +20,11 @@ const PokedexHeader = () => {
         )}`}</p>
       </div>
       <div tw='container flex items-center px-8 justify-between mx-auto max-w-5xl'>
-        <p tw='text-8xl font-semibold opacity-70 font-fun'>{data?.name}</p>
+        {isLoading ? (
+          <div tw='animate-pulse h-24 w-[500px] bg-gray-300 rounded-2xl' />
+        ) : (
+          <p tw='text-8xl font-semibold opacity-70 font-fun'>{data?.name}</p>
+        )}
       </div>
     </>
   );

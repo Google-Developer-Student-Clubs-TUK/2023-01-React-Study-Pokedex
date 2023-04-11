@@ -11,7 +11,6 @@ const useGetPokemonBasicInfoQuery = (id: number) =>
           data.sprites.other?.['official-artwork'].front_default ?? undefined,
       };
     },
-    keepPreviousData: true,
   });
 
 export default useGetPokemonBasicInfoQuery;
