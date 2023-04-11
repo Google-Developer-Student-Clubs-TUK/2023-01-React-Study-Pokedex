@@ -37,6 +37,7 @@ const PokedexPicture = () => {
             height={204}
             id='pokedex-picture'
             afterLoad={handleLoadImage}
+            key={data?.name ?? ''}
           />
         )}
       </div>
