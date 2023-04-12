@@ -11,7 +11,7 @@ type NavigationProps = {
   previousButtonDisabled?: boolean;
   nextButtonDisabled?: boolean;
 };
-// TODO: Button 컴포넌트 리팩토링하기
+
 const Navigation = ({
   currentHashTagNumber,
   onPreviousButtonClick,

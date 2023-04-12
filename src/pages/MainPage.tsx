@@ -8,7 +8,6 @@ import {
   PokedexPicture,
 } from '@/domains/components';
 
-// TODO: 로딩 처리하기
 const MainPage = () => (
   <main tw='mb-24'>
     <div>
