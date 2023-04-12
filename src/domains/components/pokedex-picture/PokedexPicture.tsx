@@ -1,9 +1,8 @@
 import 'twin.macro';
-import 'react-lazy-load-image-component/src/effects/blur.css';
 
 import React from 'react';
-import { LazyLoadImage } from 'react-lazy-load-image-component';
 
+import { ImageView } from '@/components';
 import Navigation from '@/components/Navigation';
 
 import {
@@ -27,17 +26,15 @@ const PokedexPicture = () => {
         {isLoading ? (
           <div tw='animate-pulse w-[264px] h-[204px] bg-gray-300 rounded-2xl' />
         ) : (
-          <LazyLoadImage
+          <ImageView
             tw='absolute inset-0 w-full h-full object-contain object-center'
-            effect='blur'
             src={data?.image}
             alt={data?.name ?? ''}
             crossOrigin='anonymous'
             width={264}
             height={204}
-            id='pokedex-picture'
-            afterLoad={handleLoadImage}
             key={data?.name ?? ''}
+            onLoad={handleLoadImage}
           />
         )}
       </div>

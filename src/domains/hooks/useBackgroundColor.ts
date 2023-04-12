@@ -9,11 +9,10 @@ const colorThief = new ColorThief();
 const useBackgroundColor = () => {
   const [colorPalette, setColorPalette] = useAtom(colorPaletteAtom);
 
-  const handleLoadImage = () => {
-    const image = document.getElementById(
-      'pokedex-picture',
-    ) as HTMLImageElement;
-    if (!image) return;
+  const handleLoadImage = (
+    e: React.SyntheticEvent<HTMLImageElement, Event>,
+  ) => {
+    const image = e.currentTarget;
     const color = colorThief.getColor(image);
     setColorPalette(RGBToHSL(color));
   };
