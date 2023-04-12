@@ -12,6 +12,20 @@
 
 ## 실행 방법
 
+- node js가 설치가 선행되어야 합니다.(v16.14.1)
+
+- 만약 pnpm이 설치되어 있지 않은 경우, 아래의 명령어로 pnpm을 설치합니다.
+
+```shell
+npm i -g yarn
+```
+
+- 아래 명령어로 실행시킬 수 있습니다.
+
+```shell
+yarn && yarn dev
+```
+
 ## URL
 
 - 배포 링크 : https://jqkk.github.io/2023-01-React-Study-Pokedex/
@@ -68,6 +82,10 @@
 ├── App.tsx
 └── main.tsx
 ```
+
+## 회고
+
+[1주차 회고](./docs/1주차.md)
 
 ## 프로젝트 진행 방식
 
