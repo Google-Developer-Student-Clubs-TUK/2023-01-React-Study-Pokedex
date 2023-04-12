@@ -8,7 +8,7 @@ export const Wrapper = styled.div`
 
   height: 100%;
 
-  @media screen and (max-width: 420px) {
+  @media screen and (max-width: 720px) {
     width: 300px;
   }
 `;

@@ -17,10 +17,4 @@ export default function App() {
 const Wrapper = styled.div`
   display: flex;
   justify-content: center;
-
-  height: 100vh;
-
-  @media screen and (max-width: 420px) {
-    height: 100%;
-  }
 `;

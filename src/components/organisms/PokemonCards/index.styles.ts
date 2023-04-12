@@ -7,6 +7,12 @@ export const Wrapper = styled.div`
 
   max-width: 1020px;
   height: 100%;
+
+  margin: 80px 24px;
+
+  @media screen and (max-width: 720px) {
+    margin: 20px 24px;
+  }
 `;
 
 export const HeaderWrapper = styled.div`
@@ -14,7 +20,7 @@ export const HeaderWrapper = styled.div`
   justify-content: space-between;
   align-items: center;
 
-  @media screen and (max-width: 420px) {
+  @media screen and (max-width: 720px) {
     flex-direction: column-reverse;
   }
 `;
@@ -40,7 +46,7 @@ export const SubWrapper = styled.div`
     "profile stat stat"
     "type chain chain";
 
-  @media screen and (max-width: 420px) {
+  @media screen and (max-width: 720px) {
     grid-template-rows: repeat(4, 1fr);
     grid-template-columns: repeat(1, 1fr);
 

@@ -58,7 +58,7 @@ export const StatBar = styled.div<Omit<PokemonStatCardProps, "stats">>`
     border-radius: 9999px;
   }
 
-  @media screen and (max-width: 420px) {
+  @media screen and (max-width: 720px) {
     width: 200px;
   }
 `;
