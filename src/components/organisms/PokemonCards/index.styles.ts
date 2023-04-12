@@ -1,8 +1,14 @@
 import styled from "styled-components";
 
 export const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
   max-width: 1020px;
   height: 100%;
+
+  padding: 20px 0px;
 `;
 
 export const HeaderWrapper = styled.div`
