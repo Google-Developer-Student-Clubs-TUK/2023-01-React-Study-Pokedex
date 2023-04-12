@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/stores/store";
 import { getPokemon } from "@/stores/pokemonSlice";
+import { setIsLoading, setIsLoaded } from "@/stores/isLoadingSlice";
 
 export function usePokemon() {
   const id = useSelector((state: RootState) => state.pokemonId.id);
@@ -10,6 +11,7 @@ export function usePokemon() {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    dispatch(setIsLoading());
     fetch(`https://pokeapi.co/api/v2/pokemon/${id}/`)
       .then((res) => res.json())
       .then(async (res) => {
@@ -22,7 +24,8 @@ export function usePokemon() {
           evolutionChain: await getEvolutionChain(res.id),
         };
         dispatch(getPokemon(pokemon));
-      });
+      })
+      .then(() => dispatch(setIsLoaded()));
   }, [id]);
 }
 
