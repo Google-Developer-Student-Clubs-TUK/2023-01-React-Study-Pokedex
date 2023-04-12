@@ -68,7 +68,7 @@ yarn && yarn dev
 │   │   ├── queries
 │   │   │   └── useGetPokemonBasicInfoQuery.ts
 │   │   ├── useBackgroundColor.ts
-│   │   └── userNavigation.ts
+│   │   └── useNavigation.ts
 │   └── utils
 │       ├── color.ts
 │       └── fns.ts
