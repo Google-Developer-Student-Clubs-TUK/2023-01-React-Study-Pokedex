@@ -10,10 +10,10 @@ export const Wrapper = styled.div`
 export const Type = styled.div`
   color: rgb(46, 107, 71);
   font-weight: 500;
-  font-size: 1.4rem;
+  font-size: 1.6rem;
 
   border: 1px solid rgb(46, 107, 71);
   border-radius: 0.375rem;
 
-  padding: 0.25rem 1rem;
+  padding: 6px 14px;
 `;

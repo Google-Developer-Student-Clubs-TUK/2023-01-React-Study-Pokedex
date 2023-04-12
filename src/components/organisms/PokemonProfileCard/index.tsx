@@ -18,7 +18,7 @@ export function PokemonProfileCard({ profile }: PokemonProfileCardProps) {
     <Card title="프로필">
       {isLoading ? (
         <Skeleton
-          sx={{ bgcolor: "grey.700" }}
+          sx={{ bgcolor: "grey.400" }}
           variant="rounded"
           width={"100%"}
           height={"100%"}
