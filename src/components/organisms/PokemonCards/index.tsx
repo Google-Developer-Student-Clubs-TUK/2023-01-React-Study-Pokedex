@@ -20,7 +20,7 @@ export function PokemonCards() {
     <S.Wrapper>
       <S.HeaderWrapper>
         <S.PokemonName>{pokemon.name}</S.PokemonName>
-        <S.Index>{`# ${pokemon.id.toString().padStart(3, "0")}`}</S.Index>
+        <S.Index>{`#${pokemon.id.toString().padStart(3, "0")}`}</S.Index>
       </S.HeaderWrapper>
       <S.SubWrapper>
         <S.ProfileCardWrapper>

@@ -21,7 +21,7 @@ export function Card({ title, children }: CardProps) {
         >
           <S.ArrowLeft />
         </S.Button>
-        <S.PagenationIndex>{`# ${id
+        <S.PagenationIndex>{`#${id
           .toString()
           .padStart(3, "0")}`}</S.PagenationIndex>
         <S.Button
