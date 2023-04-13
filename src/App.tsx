@@ -1,8 +1,7 @@
-function App() {
-  return (
-    <div/>
-  )
-}
- 
+import React from 'react';
 
-export default App
+import { MainPage } from '@/pages';
+
+const App = () => <MainPage />;
+
+export default App;
