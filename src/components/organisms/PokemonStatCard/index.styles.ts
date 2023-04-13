@@ -1,4 +1,4 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import { PokemonStatCardProps } from "./index.types";
 
 export const Wrapper = styled.div`
@@ -38,6 +38,7 @@ export const StatBar = styled.div<Omit<PokemonStatCardProps, "stats">>`
   background-color: rgb(73, 90, 86);
   border-radius: 9999px;
 
+
   &::after {
     content: "";
 
@@ -53,7 +54,8 @@ export const StatBar = styled.div<Omit<PokemonStatCardProps, "stats">>`
 
     transition-property: all;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-    transition-duration: 0.15s;
+    transition-duration: 1s;
+
 
     border-radius: 9999px;
   }
