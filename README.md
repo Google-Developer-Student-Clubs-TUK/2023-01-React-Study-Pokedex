@@ -12,7 +12,7 @@
 ## 실행 방법
 
 ## URL
-- 배포 링크 : 
+- 배포 링크 : https://pione3r.github.io/poke-encyclopedia/
 - 웹 vscode 링크 : https://github.dev/Google-Developer-Student-Clubs-TUK/2023-01-React-Study-Pokedex
 
 ## 기술 스택
