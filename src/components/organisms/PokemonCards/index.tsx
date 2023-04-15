@@ -17,7 +17,7 @@ export function PokemonCards() {
 
   const isLoading = useSelector((state: RootState) => state.isLoading.status);
 
-  const { name, onChangeHandler, onKeyUpHandler } = usePokemon();
+  const { name, onChangeHandler, onKeyDownHandler } = usePokemon();
 
   return (
     <S.Wrapper>
@@ -41,7 +41,7 @@ export function PokemonCards() {
             placeholder="포켓몬 이름을 입력해주세요"
             value={name}
             onChange={onChangeHandler}
-            onKeyUp={onKeyUpHandler}
+            onKeyDown={onKeyDownHandler}
           />
         </S.SearchBarWrapper>
       </S.HeaderWrapper>
