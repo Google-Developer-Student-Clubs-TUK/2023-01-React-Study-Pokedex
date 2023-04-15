@@ -20,12 +20,13 @@ export function PokemonEvolutionChainCard({
         {evolutionChain.map((item, index) =>
           isLoading ? (
             <Skeleton
+              key={index}
               sx={{ bgcolor: "grey.400" }}
               variant="rounded"
               width={"100%"}
               height={"100%"}
             >
-              <S.ItemWrapper key={index}>
+              <S.ItemWrapper>
                 <S.ItemTitle>{item.name}</S.ItemTitle>
 
                 <S.Image

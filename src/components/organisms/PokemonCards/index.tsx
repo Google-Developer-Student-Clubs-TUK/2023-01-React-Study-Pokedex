@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import * as S from "./index.styles";
 
 import { PokemonEvolutionChainCard } from "../PokemonEvolutionChainCard";
@@ -10,17 +10,40 @@ import { useSelector } from "react-redux";
 import { RootState } from "@/stores/store";
 
 import { usePokemon } from "@/hooks/usePokemon";
+import { Skeleton } from "@mui/material";
 
 export function PokemonCards() {
   const pokemon = useSelector((state: RootState) => state.pokemon);
 
-  usePokemon();
+  const isLoading = useSelector((state: RootState) => state.isLoading.status);
+
+  const { name, onChangeHandler, onKeyUpHandler } = usePokemon();
 
   return (
     <S.Wrapper>
       <S.HeaderWrapper>
-        <S.PokemonName>{pokemon.name}</S.PokemonName>
-        <S.Index>{`#${pokemon.id.toString().padStart(3, "0")}`}</S.Index>
+        {isLoading ? (
+          <Skeleton>
+            <S.NameWrapper>
+              <S.Index>{`#${pokemon.id.toString().padStart(3, "0")}`}</S.Index>
+              <S.PokemonName>{pokemon.name}</S.PokemonName>
+            </S.NameWrapper>
+          </Skeleton>
+        ) : (
+          <S.NameWrapper>
+            <S.Index>{`#${pokemon.id.toString().padStart(3, "0")}`}</S.Index>
+            <S.PokemonName>{pokemon.name}</S.PokemonName>
+          </S.NameWrapper>
+        )}
+
+        <S.SearchBarWrapper>
+          <S.SearchBar
+            placeholder="포켓몬 이름을 입력해주세요"
+            value={name}
+            onChange={onChangeHandler}
+            onKeyUp={onKeyUpHandler}
+          />
+        </S.SearchBarWrapper>
       </S.HeaderWrapper>
       <S.SubWrapper>
         <S.ProfileCardWrapper>

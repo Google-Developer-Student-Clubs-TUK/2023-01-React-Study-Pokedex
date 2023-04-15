@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/stores/store";
@@ -27,6 +27,34 @@ export function usePokemon() {
       })
       .then(() => dispatch(setIsLoaded()));
   }, [id]);
+
+  const [name, setName] = useState("");
+
+  const onChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) =>
+    setName(event.target.value);
+
+  const onKeyUpHandler = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === "Enter") {
+      dispatch(setIsLoading());
+      fetch(`https://pokeapi.co/api/v2/pokemon/${name}/`)
+        .then((res) => res.json())
+        .then(async (res) => {
+          const pokemon = {
+            id: res.id,
+            name: res.species.name,
+            profile: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`,
+            stats: getStats(res.stats),
+            types: getTypes(res.types),
+            evolutionChain: await getEvolutionChain(res.id),
+          };
+          dispatch(getPokemon(pokemon));
+        })
+        .then(() => dispatch(setIsLoaded()))
+        .catch(() => alert("포켓몬 이름을 다시 확인해주세요"));
+    }
+  };
+
+  return { name, onChangeHandler, onKeyUpHandler };
 }
 
 function getStats(rawStats: { base_stat: number; stat: { name: string } }[]) {

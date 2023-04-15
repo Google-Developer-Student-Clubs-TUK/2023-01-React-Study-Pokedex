@@ -17,12 +17,13 @@ export function PokemonTypeCard({ types }: PokemonTypeCardProps) {
         {types.map((type, index) =>
           isLoading ? (
             <Skeleton
+              key={index}
               sx={{ bgcolor: "grey.400" }}
               variant="rounded"
               width={"100%"}
               height={"100%"}
             >
-              <S.Type key={index}>{type}</S.Type>
+              <S.Type>{type}</S.Type>
             </Skeleton>
           ) : (
             <S.Type key={index}>{type}</S.Type>
