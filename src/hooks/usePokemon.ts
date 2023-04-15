@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/stores/store";
 import { getPokemon } from "@/stores/pokemonSlice";
 import { setIsLoading, setIsLoaded } from "@/stores/isLoadingSlice";
+import { setIdByAmount } from "@/stores/pokemonIdSlice";
 
 export function usePokemon() {
   const id = useSelector((state: RootState) => state.pokemonId.id);
@@ -48,6 +49,7 @@ export function usePokemon() {
             evolutionChain: await getEvolutionChain(res.id),
           };
           dispatch(getPokemon(pokemon));
+          dispatch(setIdByAmount(res.id));
         })
         .then(() => dispatch(setIsLoaded()))
         .catch(() => alert("포켓몬 이름을 다시 확인해주세요"));

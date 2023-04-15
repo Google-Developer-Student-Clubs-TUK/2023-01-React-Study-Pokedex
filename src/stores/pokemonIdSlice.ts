@@ -20,14 +20,14 @@ export const pokemonIdSlice = createSlice({
       if (state.id <= 1) return;
       state.id -= 1;
     },
-    incrementByAmount: (state, action: PayloadAction<number>) => {
-      state.id += action.payload;
+    setIdByAmount: (state, action: PayloadAction<number>) => {
+      state.id = action.payload;
     },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { increment, decrement, incrementByAmount } =
+export const { increment, decrement, setIdByAmount } =
   pokemonIdSlice.actions;
 
 export default pokemonIdSlice.reducer;
