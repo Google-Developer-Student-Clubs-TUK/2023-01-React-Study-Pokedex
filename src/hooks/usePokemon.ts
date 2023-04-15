@@ -18,7 +18,7 @@ export function usePokemon() {
         const pokemon = {
           id: res.id,
           name: res.species.name,
-          profile: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`,
+          profile: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${res.id}.png`,
           stats: getStats(res.stats),
           types: getTypes(res.types),
           evolutionChain: await getEvolutionChain(res.id),
@@ -42,7 +42,7 @@ export function usePokemon() {
           const pokemon = {
             id: res.id,
             name: res.species.name,
-            profile: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`,
+            profile: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${res.id}.png`,
             stats: getStats(res.stats),
             types: getTypes(res.types),
             evolutionChain: await getEvolutionChain(res.id),
