@@ -7,8 +7,11 @@ import { decrement, increment } from "@/stores/pokemonIdSlice";
 import { RootState } from "@/stores/store";
 
 export function Card({ title, children }: CardProps) {
-  const id = useSelector((state: RootState) => state.pokemonId.id);
   const dispatch = useDispatch();
+
+  const id = useSelector((state: RootState) => state.pokemonId.id);
+
+  const pokemonId = useSelector((state: RootState) => state.pokemon.id);
 
   return (
     <S.Wrapper>
@@ -21,7 +24,7 @@ export function Card({ title, children }: CardProps) {
         >
           <S.ArrowLeft />
         </S.Button>
-        <S.PagenationIndex>{`#${id
+        <S.PagenationIndex>{`#${pokemonId
           .toString()
           .padStart(3, "0")}`}</S.PagenationIndex>
         <S.Button
