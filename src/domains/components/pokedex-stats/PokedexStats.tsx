@@ -14,6 +14,7 @@ const PokedexStats = () => {
   const colorPalette = useAtomValue(colorPaletteAtom);
   const { data } = useGetPokemonStatsQuery(currentNumber);
   // TODO: 스켈레톤 UI
+  // FIXME: 스탯 수치 정확하지 않음. 수정 필요
 
   return (
     <Card
@@ -54,7 +55,19 @@ const PokedexStats = () => {
                 </div>
               ))}
             </div>
-            <div />
+            <div>
+              {data?.stats.map((stat, index) => (
+                <div
+                  tw='flex justify-between h-6 mt-2 items-center'
+                  key={index}>
+                  <div
+                    tw='font-semibold text-sm tabular-nums'
+                    style={{ color: getTextColor(colorPalette) }}>
+                    {Math.round((stat.base_stat / 100) * 150)}
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       }
