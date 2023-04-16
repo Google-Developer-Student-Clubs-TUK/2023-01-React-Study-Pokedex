@@ -22,3 +22,12 @@ export const RGBToHSL = ([r, g, b]: number[]): [number, number, number] => {
 
 export const constrainValue = (value: number, min: number, max: number) =>
   Math.min(Math.max(value, min), max);
+
+export const getFillStatColor = (color: [number, number, number]) =>
+  `hsl(${color[0]}, 50%, 62%)`;
+
+export const getBarColor = (color: [number, number, number]) =>
+  `hsl(${color[0]}, 10%, 32%)`;
+
+export const getTextColor = (color: [number, number, number]) =>
+  `hsl(${color[0]}, 20%, 32%)`;

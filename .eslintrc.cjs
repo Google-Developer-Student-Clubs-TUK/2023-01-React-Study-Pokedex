@@ -58,5 +58,6 @@ module.exports = {
     'import/no-extraneous-dependencies': 'off',
     'import/prefer-default-export': 'off',
     'no-nested-ternary': 'off',
+    'react/no-array-index-key': 'off',
   },
 };
