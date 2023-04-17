@@ -31,3 +31,6 @@ export const getBarColor = (color: [number, number, number]) =>
 
 export const getTextColor = (color: [number, number, number]) =>
   `hsl(${color[0]}, 20%, 32%)`;
+
+export const getBorderColor = (color: [number, number, number]) =>
+  `hsl(${color[0]}, 40%, 30%)`;

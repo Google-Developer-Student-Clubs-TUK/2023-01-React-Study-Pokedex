@@ -9,6 +9,7 @@ const useGetPokemonBasicInfoQuery = (id: number) =>
         name: data.name,
         image:
           data.sprites.other?.['official-artwork'].front_default ?? undefined,
+        types: data.types.map((type) => type.type.name),
       };
     },
   });
