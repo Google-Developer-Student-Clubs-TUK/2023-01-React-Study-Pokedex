@@ -25,7 +25,6 @@ const useGetEvolutionChainQuery = (id: number) =>
             }.png`,
           });
         }
-        console.log(evolutionChain);
         return evolutionChain;
       },
     },
