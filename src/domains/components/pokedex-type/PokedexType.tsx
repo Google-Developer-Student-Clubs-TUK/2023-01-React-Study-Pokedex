@@ -4,7 +4,7 @@ import { useAtomValue } from 'jotai';
 import React from 'react';
 
 import { colorPaletteAtom } from '@/domains/atoms/color-palette';
-import { useGetPokemonBasicInfoQuery, useNavigation } from '@/domains/hooks';
+import { useGetPokemonInfoQueries, useNavigation } from '@/domains/hooks';
 import { getBorderColor } from '@/domains/utils';
 
 import Card from '../Card';
@@ -12,8 +12,8 @@ import Card from '../Card';
 const PokedexType = () => {
   const { currentNumber } = useNavigation();
   const colorPalette = useAtomValue(colorPaletteAtom);
-  const { data = { types: [] }, isLoading } =
-    useGetPokemonBasicInfoQuery(currentNumber);
+  const { pokemonBasicInfoData = { types: [] }, isLoading } =
+    useGetPokemonInfoQueries(currentNumber);
 
   return (
     <Card
@@ -24,7 +24,7 @@ const PokedexType = () => {
           {isLoading ? (
             <div tw='animate-pulse bg-gray-300 rounded-2xl w-full h-full' />
           ) : (
-            data.types.map((type, index) => (
+            pokemonBasicInfoData.types.map((type, index) => (
               <span
                 tw='px-4 py-1 border rounded-md font-medium h-fit'
                 style={{

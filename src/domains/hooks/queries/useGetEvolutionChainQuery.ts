@@ -5,7 +5,12 @@ import { pokemonApi } from '@/domains/api';
 const useGetEvolutionChainQuery = (id: number) =>
   useQuery(
     ['pokemon', id, 'evolution'],
-    () => pokemonApi.getPokemonEvolutionChain(id),
+    async () => {
+      const {
+        evolution_chain: { url },
+      } = await pokemonApi.getPokemonSpecies(id);
+      return pokemonApi.getPokemonEvolutionChain(Number(url.split('/')[6]));
+    },
     {
       select(data) {
         const evolutionChain = [];

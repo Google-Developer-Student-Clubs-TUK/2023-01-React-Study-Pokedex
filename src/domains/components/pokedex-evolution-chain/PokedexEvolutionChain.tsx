@@ -5,7 +5,7 @@ import React from 'react';
 
 import { ImageView } from '@/components';
 import { colorPaletteAtom } from '@/domains/atoms/color-palette';
-import { useGetEvolutionChainQuery, useNavigation } from '@/domains/hooks';
+import { useGetPokemonInfoQueries, useNavigation } from '@/domains/hooks';
 import { getTextColor } from '@/domains/utils';
 
 import Card from '../Card';
@@ -13,7 +13,8 @@ import Card from '../Card';
 const PokedexEvolutionChain = () => {
   const { currentNumber } = useNavigation();
   const colorPalette = useAtomValue(colorPaletteAtom);
-  const { data = [], isLoading } = useGetEvolutionChainQuery(currentNumber);
+  const { pokemonEvolutionChainData = [], isLoading } =
+    useGetPokemonInfoQueries(currentNumber);
   // FIXME: 진화 정보 수정하기...
   return (
     <Card
@@ -24,7 +25,7 @@ const PokedexEvolutionChain = () => {
           {isLoading ? (
             <div tw='animate-pulse bg-gray-300 rounded-2xl w-full h-full' />
           ) : (
-            data.map((element, index) => (
+            pokemonEvolutionChainData.map((element, index) => (
               <div
                 tw='relative flex-1 flex gap-2 flex-col justify-center items-center'
                 key={index}>

@@ -2,12 +2,13 @@ import 'twin.macro';
 
 import React from 'react';
 
-import { useGetPokemonBasicInfoQuery, useNavigation } from '@/domains/hooks';
+import { useGetPokemonInfoQueries, useNavigation } from '@/domains/hooks';
 import { createLeadingZero } from '@/domains/utils';
 
 const PokedexHeader = () => {
   const { currentNumber } = useNavigation();
-  const { data, isLoading } = useGetPokemonBasicInfoQuery(currentNumber);
+  const { pokemonBasicInfoData, isLoading } =
+    useGetPokemonInfoQueries(currentNumber);
 
   return (
     <>
@@ -23,7 +24,9 @@ const PokedexHeader = () => {
         {isLoading ? (
           <div tw='animate-pulse h-24 w-[500px] bg-gray-300 rounded-2xl' />
         ) : (
-          <p tw='text-8xl font-semibold opacity-70 font-fun'>{data?.name}</p>
+          <p tw='text-8xl font-semibold opacity-70 font-fun'>
+            {pokemonBasicInfoData?.name}
+          </p>
         )}
       </div>
     </>

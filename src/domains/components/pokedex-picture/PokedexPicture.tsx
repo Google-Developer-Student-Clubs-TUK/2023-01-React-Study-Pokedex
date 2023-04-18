@@ -6,14 +6,15 @@ import { ImageView } from '@/components';
 
 import {
   useBackgroundColor,
-  useGetPokemonBasicInfoQuery,
+  useGetPokemonInfoQueries,
   useNavigation,
 } from '../../hooks';
 import Card from '../Card';
 
 const PokedexPicture = () => {
   const { currentNumber } = useNavigation();
-  const { data, isLoading } = useGetPokemonBasicInfoQuery(currentNumber);
+  const { pokemonBasicInfoData, isLoading } =
+    useGetPokemonInfoQueries(currentNumber);
   const { handleLoadImage } = useBackgroundColor();
 
   return (
@@ -26,12 +27,12 @@ const PokedexPicture = () => {
           ) : (
             <ImageView
               tw='absolute inset-0 w-full h-full object-contain object-center'
-              src={data?.image}
-              alt={data?.name ?? ''}
+              src={pokemonBasicInfoData?.image}
+              alt={pokemonBasicInfoData?.name ?? ''}
               crossOrigin='anonymous'
               width={264}
               height={204}
-              key={data?.name ?? ''}
+              key={pokemonBasicInfoData?.name ?? ''}
               onLoad={handleLoadImage}
             />
           )}
