@@ -43,6 +43,7 @@ yarn && yarn dev
 - yarn
 - husky
 - vite
+- storybook
 ```
 
 ## 폴더 구조
@@ -51,41 +52,69 @@ yarn && yarn dev
 .
 ├── components
 │   ├── buttons
+│   │   ├── Button.tsx
+│   │   ├── Button.stories.tsx
+│   │   ├── NextButton.tsx
+│   │   └── PreviousButton.tsx
 │   ├── icons
+│   │   ├── BackgroundIcon.tsx
+│   │   ├── NextIcon.tsx
+│   │   └── PreviousIcon.tsx
 │   ├── ImageView.tsx
-│   └── Navigation.tsx
-├── domains
-│   ├── api
-│   │   └── pokemon.ts
-│   ├── atoms
-│   │   ├── color-palette.ts
-│   │   └── count.ts
-│   ├── components
-│   │   ├── background
-│   │   ├── pokedex-header
-│   │   └── pokedex-picture
-│   ├── hooks
-│   │   ├── queries
-│   │   │   └── useGetPokemonBasicInfoQuery.ts
-│   │   ├── useBackgroundColor.ts
-│   │   └── useNavigation.ts
-│   └── utils
-│       ├── color.ts
-│       └── fns.ts
-├── motions
-│   └── image-view.motion.ts
-├── pages
-│   └── MainPage.tsx
-├── styles
-│   └── GlobalStyles.tsx
-├── types
-├── App.tsx
-└── main.tsx
+│   ├── ImageView.stories.tsx
+│   ├── Navigation.tsx
+│   └── Navigation.stories.tsx
+└── domains
+    ├── api
+    │   └── pokemon.ts
+    ├── atoms
+    │   ├── color-palette.ts
+    │   └── count.ts
+    ├── components
+    │   ├── background
+    │   │   ├── Background.tsx
+    │   │   └── Background.stories.tsx
+    │   ├── pokedex-evolution-chain
+    │   │   ├── PokedexEvolutionChain.tsx
+    │   │   └── PokedexEvolutionChain.stories.tsx
+    │   ├── pokedex-header
+    │   │   ├── PokedexHeader.tsx
+    │   │   └── PokedexHeader.stories.tsx
+    │   ├── pokedex-picture
+    │   │   ├── PokedexPicture.tsx
+    │   │   └── PokedexPicture.stories.tsx
+    │   ├── pokedex-stats
+    │   │   ├── PokedexStats.tsx
+    │   │   └── PokedexStats.stories.tsx
+    │   ├── pokedex-type
+    │   │   ├── PokedexType.tsx
+    │   │   └── PokedexType.stories.tsx
+    │   ├── Card.tsx
+    │   └── Card.stories.tsx
+    ├── hooks
+    │   ├── queries
+    │   │   ├── useGetPokemonInfoQuery.ts
+    │   │   └── useGetPokemonStatsQuery.ts
+    │   ├── useBackgroundColor.ts
+    │   └── userNavigation.ts
+    ├── types
+    │   └── pokemon.ts
+    ├── utils
+    │   ├── color.ts
+    │   └── fns.ts
+    ├── motions
+    │   └── image-view.motion.ts
+    ├── pages
+    │   ├── MainPage.tsx
+    │   └── MainPage.stories.tsx
+    └── styles
+        └── GlobalStyles.tsx
 ```
 
 ## 회고
 
 [1주차 회고](./docs/1주차.md)
+[2주차 회고](./docs/2주차.md)
 
 ## 프로젝트 진행 방식
 
