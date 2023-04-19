@@ -1,13 +1,13 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import BackgroundColorComponent from './Background';
+import BackgroundComponent from './Background';
 
-const meta: Meta<typeof BackgroundColorComponent> = {
-  title: 'Domains/Background',
-  component: BackgroundColorComponent,
+const meta: Meta<typeof BackgroundComponent> = {
+  title: 'Domains/BackgroundColor',
+  component: BackgroundComponent,
 };
 
 export default meta;
-type Story = StoryObj<typeof BackgroundColorComponent>;
+type Story = StoryObj<typeof BackgroundComponent>;
 
-export const Background: Story = {};
+export const BackgroundColor: Story = {};
