@@ -96,7 +96,7 @@ yarn && yarn dev
     │   │   ├── useGetPokemonInfoQuery.ts
     │   │   └── useGetPokemonStatsQuery.ts
     │   ├── useBackgroundColor.ts
-    │   └── userNavigation.ts
+    │   └── useNavigation.ts
     ├── types
     │   └── pokemon.ts
     ├── utils
