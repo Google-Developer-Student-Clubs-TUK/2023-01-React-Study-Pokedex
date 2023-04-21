@@ -21,8 +21,13 @@ export const HeaderWrapper = styled.div`
   align-items: center;
 
   @media screen and (max-width: 720px) {
-    flex-direction: column-reverse;
+    flex-direction: column;
   }
+`;
+
+export const NameWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
 `;
 
 export const PokemonName = styled.h1`
@@ -72,4 +77,33 @@ export const TypeCardWrapper = styled.div`
 
 export const ChainCardWrapper = styled.div`
   grid-area: chain;
+`;
+
+export const SearchBarWrapper = styled.div`
+  display: flex;
+  align-self: flex-end;
+  gap: 10px;
+
+  margin-bottom: 10px;
+
+  @media screen and (max-width: 720px) {
+    width: 100%;
+  }
+`;
+
+export const SearchBar = styled.input`
+  all: unset;
+  font-size: 1.6rem;
+
+  background: #ffffff68;
+
+  width: 300px;
+
+  padding: 10px 10px;
+
+  border-radius: 10px;
+
+  @media screen and (max-width: 720px) {
+    width: 100%;
+  }
 `;

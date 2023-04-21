@@ -1,20 +1,14 @@
 import React from "react";
+import { Route, Routes } from "react-router-dom";
 
-import styled from "styled-components";
-
-import { Background } from "@/components/blocks/Background";
-import { PokemonCards } from "@/components/organisms/PokemonCards";
+import PokemonListPage from "@/pages/PokemonListPage";
+import PokemonPage from "@/pages/PokemonPage";
 
 export default function App() {
   return (
-    <Wrapper>
-      <PokemonCards />
-      <Background />
-    </Wrapper>
+    <Routes>
+      <Route path="/poke-encyclopedia/:id" element={<PokemonPage />} />
+      <Route path="/poke-encyclopedia/" element={<PokemonListPage />} />
+    </Routes>
   );
 }
-
-const Wrapper = styled.div`
-  display: flex;
-  justify-content: center;
-`;

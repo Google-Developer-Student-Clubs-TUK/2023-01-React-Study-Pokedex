@@ -1,9 +1,11 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/stores/store";
 import { getPokemon } from "@/stores/pokemonSlice";
 import { setIsLoading, setIsLoaded } from "@/stores/isLoadingSlice";
+import { setIdByAmount } from "@/stores/pokemonIdSlice";
+import { pokemonNames } from "@/db/pokemonNames";
 
 export function usePokemon() {
   const id = useSelector((state: RootState) => state.pokemonId.id);
@@ -18,7 +20,7 @@ export function usePokemon() {
         const pokemon = {
           id: res.id,
           name: res.species.name,
-          profile: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`,
+          profile: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${res.id}.png`,
           stats: getStats(res.stats),
           types: getTypes(res.types),
           evolutionChain: await getEvolutionChain(res.id),
@@ -27,6 +29,62 @@ export function usePokemon() {
       })
       .then(() => dispatch(setIsLoaded()));
   }, [id]);
+
+  const [name, setName] = useState("");
+
+  const onChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) =>
+    setName(event.target.value);
+
+  const onKeyDownHandler = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.nativeEvent.isComposing) {
+      return;
+    }
+
+    if (event.key === "Enter") {
+      dispatch(setIsLoading());
+
+      if (pokemonNames.hasOwnProperty(name)) {
+        fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonNames[name]}/`)
+          .then((res) => res.json())
+          .then(async (res) => {
+            const pokemon = {
+              id: res.id,
+              name: res.species.name,
+              profile: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${res.id}.png`,
+              stats: getStats(res.stats),
+              types: getTypes(res.types),
+              evolutionChain: await getEvolutionChain(res.id),
+            };
+            dispatch(getPokemon(pokemon));
+            dispatch(setIdByAmount(res.id));
+          })
+          .then(() => dispatch(setIsLoaded()))
+          .catch(() => alert("포켓몬 이름을 다시 확인해주세요"));
+      }
+      if (!pokemonNames.hasOwnProperty(name)) {
+        console.log(!pokemonNames.hasOwnProperty(name));
+        fetch(`https://pokeapi.co/api/v2/pokemon/${name}/`)
+          .then((res) => res.json())
+          .then(async (res) => {
+            const pokemon = {
+              id: res.id,
+              name: res.species.name,
+              profile: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${res.id}.png`,
+              stats: getStats(res.stats),
+              types: getTypes(res.types),
+              evolutionChain: await getEvolutionChain(res.id),
+            };
+            dispatch(getPokemon(pokemon));
+            dispatch(setIdByAmount(res.id));
+          })
+          .then(() => dispatch(setIsLoaded()))
+          .catch(() => alert("포켓몬 이름을 다시 확인해주세요"));
+      }
+      setName("");
+    }
+  };
+
+  return { name, onChangeHandler, onKeyDownHandler };
 }
 
 function getStats(rawStats: { base_stat: number; stat: { name: string } }[]) {
