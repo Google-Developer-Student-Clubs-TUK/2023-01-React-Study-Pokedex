@@ -1,6 +1,7 @@
 import type {
   PokemonBasicInfo,
   PokemonEvolutionChain,
+  PokemonList,
   PokemonSpecies,
 } from '../types';
 
@@ -24,6 +25,14 @@ export default {
       `https://pokeapi.co/api/v2/evolution-chain/${id}`,
     );
     const data: PokemonEvolutionChain = await response.json();
+    return data;
+  },
+
+  getPokemonList: async (offset: number) => {
+    const response = await fetch(
+      `https://pokeapi.co/api/v2/pokemon?limit=20&offset=${offset}`,
+    );
+    const data: PokemonList = await response.json();
     return data;
   },
 } as const;
