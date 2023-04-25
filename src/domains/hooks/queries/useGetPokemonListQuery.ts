@@ -10,7 +10,9 @@ const useGetPokemonListQuery = () =>
       getNextPageParam: (lastPage, allPages) =>
         lastPage.results[lastPage.results.length - 1].url
           .split('/')
-          .slice(-2, -1)[0] !== '898' && allPages.length * 20,
+          .slice(-2, -1)[0] < '898'
+          ? allPages.length * 20
+          : undefined,
       select(data) {
         return {
           pageParams: data.pageParams,
