@@ -11,7 +11,7 @@ import {
   PokedexType,
 } from '@/domains/components';
 
-const MainPage = () => (
+const PokedexDetailPage = () => (
   <main tw='mb-24'>
     <div>
       <h1 tw='text-3xl font-bold text-center opacity-70 mt-4'>
@@ -34,4 +34,4 @@ const MainPage = () => (
   </main>
 );
 
-export default MainPage;
+export default PokedexDetailPage;
