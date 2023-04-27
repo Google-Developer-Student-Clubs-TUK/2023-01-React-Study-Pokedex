@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 import { Link } from "react-router-dom";
 
@@ -12,6 +12,15 @@ export const Wrapper = styled.header`
   gap: 10px;
 
   padding: 20px 30px;
+
+  ${() =>
+    !window.location.pathname.includes("detail") &&
+    css`
+      background-color: #fff;
+      box-shadow: rgb(234 234 236) 0px 1px 0px;
+    `}
+
+  z-index: 1000;
 `;
 
 export const HeaderItem = styled(Link)`

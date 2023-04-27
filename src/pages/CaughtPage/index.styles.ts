@@ -6,7 +6,7 @@ export const Wrapper = styled.div`
   align-items: center;
   gap: 10px;
 
-  margin-top: 20px;
+  margin-top: 50px;
 `;
 
 export const Title = styled.h1`
