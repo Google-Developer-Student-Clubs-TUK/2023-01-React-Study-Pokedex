@@ -5,7 +5,7 @@ export interface caughtPokemonListState {
   pokemonList: number[];
 }
 
-const pokemonListJSON = window.sessionStorage.getItem("caught-pokemons");
+const pokemonListJSON = window.localStorage.getItem("caught-pokemons");
 
 const pokemonList: number[] = pokemonListJSON
   ? JSON.parse(pokemonListJSON)

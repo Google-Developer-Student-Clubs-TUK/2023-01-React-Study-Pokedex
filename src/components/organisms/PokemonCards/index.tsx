@@ -33,7 +33,7 @@ export function PokemonCards() {
 
   useEffect(() => {
     if (pokeBallStatus === "catch") {
-      const pokemonListJSON = window.sessionStorage.getItem("caught-pokemons");
+      const pokemonListJSON = window.localStorage.getItem("caught-pokemons");
 
       const pokemonList: number[] = pokemonListJSON
         ? JSON.parse(pokemonListJSON)
@@ -42,7 +42,7 @@ export function PokemonCards() {
       // 이미 잡은 포켓몬 또 잡지말까요?
       // if (pokemonList.includes(pokemon.id)) return;
 
-      window.sessionStorage.setItem(
+      window.localStorage.setItem(
         "caught-pokemons",
         JSON.stringify([...pokemonList, pokemon.id])
       );
