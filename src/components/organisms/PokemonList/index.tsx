@@ -58,7 +58,7 @@ export function PokemonList() {
           </S.CardWrapper>
         </Link>
       ))}
-      <S.Catcher ref={target}>Hi</S.Catcher>
+      {pokemonList.length >= 20 && <S.Catcher ref={target}>Hi</S.Catcher>}
     </S.Wrapper>
   );
 }
