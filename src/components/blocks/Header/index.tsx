@@ -8,7 +8,7 @@ export function Header() {
 
   return (
     <S.Wrapper>
-      <S.HeaderItem to="/poke-encyclopedia">메인 페이지</S.HeaderItem>
+      <S.HeaderItem to="/poke-encyclopedia/">메인 페이지</S.HeaderItem>
       {!isLocationCaught && <S.HeaderItem to="/poke-encyclopedia/caught">동료들</S.HeaderItem>}
     </S.Wrapper>
   );
