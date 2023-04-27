@@ -1,16 +1,28 @@
 import React, { useState } from "react";
 import * as S from "./index.styles";
 
+import { useDispatch } from "react-redux";
+import { setPokeBallStatus } from "@/stores/pokeBallSlice";
+
+import pokeBallPath from "@/assets/pokeball.png";
+import throwPokeBallPath from "@/assets/throw.gif";
+
 export function PokeBall() {
+  const [status, setStatus] = useState("");
+
+  const dispatch = useDispatch();
+
   return (
-    <div style={{ width: "3000px", height: "3000px" }}>
-      <S.Goal className="droppable"></S.Goal>
+    <>
       <S.PokeBall
-        className="poke-ball"
+        alt="poke-ball"
+        status={status}
+        src={pokeBallPath}
         draggable={false}
         onMouseDown={(event) => {
-          document.querySelector(".poke-ball")?.classList.add("throwing");
-          let ball = event.target as HTMLDivElement;
+          if (status === "threw" || status === "arrived") return;
+
+          let ball = event.target as HTMLImageElement;
 
           let shiftX = event.clientX - ball.getBoundingClientRect().left;
           let shiftY = event.clientY - ball.getBoundingClientRect().top;
@@ -36,11 +48,22 @@ export function PokeBall() {
 
           // 공을 드롭하고, 불필요한 핸들러를 제거합니다.
           ball.onmouseup = function () {
+            setStatus("threw");
+
+            setTimeout(() => {
+              setStatus("arrived");
+
+              setTimeout(() => {
+                dispatch(setPokeBallStatus("catch"));
+              }, 2000);
+            }, 1000);
+
             document.removeEventListener("mousemove", onMouseMove);
             ball.onmouseup = null;
           };
         }}
-      ></S.PokeBall>
-    </div>
+      />
+      {status === "threw" && <S.ThrowGif src={throwPokeBallPath} />}
+    </>
   );
 }

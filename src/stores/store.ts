@@ -3,6 +3,8 @@ import pokemonIdReducer from "./pokemonIdSlice";
 import pokemonReducer from "./pokemonSlice";
 import colorReducer from "./colorSlice";
 import isLoadingReducer from "./isLoadingSlice";
+import pokeBallReducer from "./pokeBallSlice";
+import caughtPokemonListReducer from "./caughtPokemonListSlice";
 
 export const store = configureStore({
   reducer: {
@@ -10,6 +12,8 @@ export const store = configureStore({
     pokemon: pokemonReducer,
     color: colorReducer,
     isLoading: isLoadingReducer,
+    pokeBall: pokeBallReducer,
+    caughtPokemonList: caughtPokemonListReducer,
   },
 });
 
