@@ -12,7 +12,7 @@ export default function App() {
     <>
       <Header />
       <Routes>
-        <Route path="/poke-encyclopedia/:id" element={<PokemonPage />} />
+        <Route path="/poke-encyclopedia/detail" element={<PokemonPage />} />
         <Route path="/poke-encyclopedia" element={<PokemonListPage />} />
         <Route path="/poke-encyclopedia/caught" element={<CaughtPage />} />
       </Routes>

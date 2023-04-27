@@ -4,7 +4,12 @@ import * as S from "./index.styles";
 
 import { useInfiniteScroll } from "@/hooks/useInfiniteScroll";
 
+import { useDispatch } from "react-redux";
+import { setIdByAmount } from "@/stores/pokemonIdSlice";
+
 export function PokemonList() {
+  const dispatch = useDispatch();
+
   const [url, setUrl] = useState(
     "https://pokeapi.co/api/v2/pokemon/?limit=20&offset=0/"
   );
@@ -41,9 +46,10 @@ export function PokemonList() {
     <S.Wrapper>
       {pokemonList.map((item, index) => (
         <Link
-          to={`/poke-encyclopedia/${index + 1}`}
+          to={`/poke-encyclopedia/detail`}
           key={index}
           style={{ all: "unset" }}
+          onClick={() => dispatch(setIdByAmount(index + 1))}
         >
           <S.CardWrapper>
             <S.SpriteWrapper>

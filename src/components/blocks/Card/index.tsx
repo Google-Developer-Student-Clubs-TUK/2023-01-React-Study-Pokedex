@@ -9,8 +9,6 @@ import { RootState } from "@/stores/store";
 export function Card({ title, children }: CardProps) {
   const dispatch = useDispatch();
 
-  const id = useSelector((state: RootState) => state.pokemonId.id);
-
   const pokemonId = useSelector((state: RootState) => state.pokemon.id);
 
   return (

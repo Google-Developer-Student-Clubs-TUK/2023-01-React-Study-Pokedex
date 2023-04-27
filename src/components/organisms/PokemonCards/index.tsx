@@ -1,20 +1,22 @@
 import React, { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import * as S from "./index.styles";
 
 import { PokemonEvolutionChainCard } from "../PokemonEvolutionChainCard";
 import { PokemonProfileCard } from "../PokemonProfileCard";
 import { PokemonStatCard } from "../PokemonStatCard";
 import { PokemonTypeCard } from "../PokemonTypeCard";
+import { PokeBall } from "../PokeBall";
 
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/stores/store";
 
-import { usePokemon } from "@/hooks/usePokemon";
-import { Skeleton } from "@mui/material";
-import { PokeBall } from "../PokeBall";
-import { useNavigate } from "react-router-dom";
 import { addCaughtPokemon } from "@/stores/caughtPokemonListSlice";
 import { setPokeBallStatus } from "@/stores/pokeBallSlice";
+
+import { usePokemon } from "@/hooks/usePokemon";
+
+import { Skeleton } from "@mui/material";
 
 export function PokemonCards() {
   const pokemon = useSelector((state: RootState) => state.pokemon);
