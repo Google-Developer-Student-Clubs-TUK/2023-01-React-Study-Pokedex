@@ -2,14 +2,12 @@ import 'twin.macro';
 
 import React, { useEffect } from 'react';
 import { useInView } from 'react-intersection-observer';
-import { useNavigate } from 'react-router-dom';
 
 import { useGetPokemonListQuery } from '@/domains/hooks';
 
 import PokedexItem from './PokedexItem';
 
 const PokedexList = () => {
-  const navigate = useNavigate();
   const [ref, inView] = useInView();
   const { data, fetchNextPage, isFetchingNextPage } = useGetPokemonListQuery();
 
@@ -28,9 +26,7 @@ const PokedexList = () => {
               key={item.id}
               pokemonImageSrc={item.imageSrc}
               pokemonName={item.name}
-              onClick={() => {
-                navigate(`/${item.id}`);
-              }}
+              id={item.id}
             />
           ))}
         </React.Fragment>
