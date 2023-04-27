@@ -8,11 +8,7 @@ export const Wrapper = styled.div`
 
   max-width: 960px;
 
-  margin: 100px auto;
-
-  @media screen and (max-width: 720px) {
-    margin-top: 50px;
-  }
+  margin: 0 auto;
 `;
 
 export const CardWrapper = styled.div`

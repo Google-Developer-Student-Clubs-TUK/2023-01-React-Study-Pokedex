@@ -3,9 +3,8 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 
 export const Wrapper = styled.header`
-  position: fixed;
+  position: sticky;
   top: 0;
-  left: 0;
 
   width: 100%;
 
