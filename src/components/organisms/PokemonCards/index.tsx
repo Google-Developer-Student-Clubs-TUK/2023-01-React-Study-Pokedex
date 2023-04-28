@@ -1,15 +1,21 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import * as S from "./index.styles";
 
 import { PokemonEvolutionChainCard } from "../PokemonEvolutionChainCard";
 import { PokemonProfileCard } from "../PokemonProfileCard";
 import { PokemonStatCard } from "../PokemonStatCard";
 import { PokemonTypeCard } from "../PokemonTypeCard";
+import { PokeBall } from "../PokeBall";
 
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/stores/store";
 
+import { addCaughtPokemon } from "@/stores/caughtPokemonListSlice";
+import { setPokeBallStatus } from "@/stores/pokeBallSlice";
+
 import { usePokemon } from "@/hooks/usePokemon";
+
 import { Skeleton } from "@mui/material";
 
 export function PokemonCards() {
@@ -18,6 +24,36 @@ export function PokemonCards() {
   const isLoading = useSelector((state: RootState) => state.isLoading.status);
 
   const { name, onChangeHandler, onKeyDownHandler } = usePokemon();
+
+  const pokeBallStatus = useSelector(
+    (state: RootState) => state.pokeBall.status
+  );
+
+  const navigate = useNavigate();
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (pokeBallStatus === "catch") {
+      const pokemonListJSON = window.localStorage.getItem("caught-pokemons");
+
+      const pokemonList: number[] = pokemonListJSON
+        ? JSON.parse(pokemonListJSON)
+        : [];
+
+      // 이미 잡은 포켓몬 또 잡지말까요?
+      // if (pokemonList.includes(pokemon.id)) return;
+
+      window.localStorage.setItem(
+        "caught-pokemons",
+        JSON.stringify([...pokemonList, pokemon.id])
+      );
+
+      dispatch(addCaughtPokemon(pokemon.id));
+      dispatch(setPokeBallStatus(""));
+      navigate("/poke-encyclopedia/caught");
+    }
+  }, [pokeBallStatus]);
 
   return (
     <S.Wrapper>
@@ -59,6 +95,7 @@ export function PokemonCards() {
           <PokemonEvolutionChainCard evolutionChain={pokemon.evolutionChain} />
         </S.ChainCardWrapper>
       </S.SubWrapper>
+      <PokeBall />
     </S.Wrapper>
   );
 }

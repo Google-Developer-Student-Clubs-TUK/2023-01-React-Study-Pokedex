@@ -8,17 +8,13 @@ export const Wrapper = styled.div`
   max-width: 1020px;
   height: 100%;
 
-  margin: 80px 24px;
-
-  @media screen and (max-width: 720px) {
-    margin: 20px 24px;
-  }
+  margin: 20px 24px;
 `;
 
 export const HeaderWrapper = styled.div`
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  /* align-items: center; */
 
   @media screen and (max-width: 720px) {
     flex-direction: column;
@@ -28,6 +24,8 @@ export const HeaderWrapper = styled.div`
 export const NameWrapper = styled.div`
   display: flex;
   flex-direction: column;
+
+  margin-left: 10px;
 `;
 
 export const PokemonName = styled.h1`

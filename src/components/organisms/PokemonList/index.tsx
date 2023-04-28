@@ -1,8 +1,15 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import * as S from "./index.styles";
 
+import { useInfiniteScroll } from "@/hooks/useInfiniteScroll";
+
+import { useDispatch } from "react-redux";
+import { setIdByAmount } from "@/stores/pokemonIdSlice";
+
 export function PokemonList() {
+  const dispatch = useDispatch();
+
   const [url, setUrl] = useState(
     "https://pokeapi.co/api/v2/pokemon/?limit=20&offset=0/"
   );
@@ -13,18 +20,13 @@ export function PokemonList() {
       .then((res) => res.json())
       .then((res) => {
         setUrl(res.next);
-        setPokemonList((prev) => [
-          ...prev,
-          ...res.results.map((item: { name: string }) => item.name),
-        ]);
+        setPokemonList(res.results.map((item: { name: string }) => item.name));
       });
   }, []);
 
   const onIntersect: IntersectionObserverCallback = ([
     { intersectionRatio },
   ]) => {
-    console.log(intersectionRatio);
-
     if (intersectionRatio > 0.25) {
       fetch(url)
         .then((res) => res.json())
@@ -38,15 +40,16 @@ export function PokemonList() {
     }
   };
 
-  const { setTarget } = useIntersectionObserver({ onIntersect });
+  const { target } = useInfiniteScroll({ onIntersect });
 
   return (
     <S.Wrapper>
       {pokemonList.map((item, index) => (
         <Link
-          to={`/poke-encyclopedia/${index + 1}`}
+          to={`/poke-encyclopedia/detail`}
           key={index}
           style={{ all: "unset" }}
+          onClick={() => dispatch(setIdByAmount(index + 1))}
         >
           <S.CardWrapper>
             <S.SpriteWrapper>
@@ -54,44 +57,14 @@ export function PokemonList() {
                 src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${
                   index + 1
                 }.png`}
-                alt=""
+                alt={`pokemon-sprite-${index + 1}`}
               />
             </S.SpriteWrapper>
             <S.Name>{item}</S.Name>
           </S.CardWrapper>
         </Link>
       ))}
-      <S.Catcher ref={setTarget}>Hi</S.Catcher>
+      {pokemonList.length >= 20 && <S.Catcher ref={target}>Hi</S.Catcher>}
     </S.Wrapper>
   );
 }
-
-interface useIntersectionObserverProps {
-  root?: null;
-  rootMargin?: string;
-  threshold?: number | number[];
-  onIntersect: IntersectionObserverCallback;
-}
-
-const useIntersectionObserver = ({
-  root,
-  rootMargin = "0px",
-  threshold = [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1],
-  onIntersect,
-}: useIntersectionObserverProps) => {
-  const [target, setTarget] = useState<HTMLElement | null | undefined>(null);
-
-  useEffect(() => {
-    if (!target) return;
-
-    const observer: IntersectionObserver = new IntersectionObserver(
-      onIntersect,
-      { root, rootMargin, threshold }
-    );
-    observer.observe(target);
-
-    return () => observer.unobserve(target);
-  }, [onIntersect, root, rootMargin, target, threshold]);
-
-  return { setTarget };
-};

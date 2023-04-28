@@ -3,21 +3,19 @@ import styled from "styled-components";
 export const Wrapper = styled.div`
   position: relative;
 
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
 
-export const Catcher = styled.div`
-  position: absolute;
-  bottom: 0;
-  height: 20px;
-  background-color: limegreen;
+  max-width: 960px;
+
+  margin: 30px auto;
 `;
 
 export const CardWrapper = styled.div`
   display: flex;
+  flex-direction: column;
   align-items: center;
+  justify-content: center;
 
   padding: 20px 20px 16px;
   border-radius: 24px;
@@ -44,4 +42,11 @@ export const Sprite = styled.img`
 
 export const Name = styled.span`
   font-size: 2rem;
+`;
+
+export const Catcher = styled.div`
+  position: absolute;
+  bottom: 0;
+  height: 20px;
+  background-color: limegreen;
 `;
