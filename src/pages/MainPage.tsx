@@ -1,56 +1,47 @@
 import React, {useState, useEffect, useRef} from "react";
 
 import { getPokemon, getPokemonCount, Poke } from "@/domains";
-import { Background, Block, BlockRow, SelectButton, Statbar } from "@/components";
+import { Background, Block, BlockRow, EvolutionPic, Nametag, SelectButton, Statbar } from "@/components";
 import extractColor, { Colors } from "@/domains/colorthief";
 
 import './MainPageStyle.css';
 
 function MainPage() {
-    const pokeNo = 1;
-    const [PokeNo, SetPokeNo] = useState(pokeNo);
-
-    const emptyPoke: Poke = {id: 0, name: "", image: "", stat: []};
-    const [PokeData, SetPokeData] = useState(emptyPoke);
+    const [pokeNo, setPokeNo] = useState(1);
+    const [pokeData, setPokeData] = useState<Poke>({id: 0, name: "", image: "", stat: [], type: [], evolves: []});
+    const [pokeCount, setPokeCount] = useState(1281);
+    const [colorData, setColorData] = useState<Colors>({color1: "", color2: ""});
 
     useEffect(() => {
-        getPokemon(PokeNo)
+        getPokemon(pokeNo)
             .then((res => {
-                SetPokeData(res);
+                setPokeData(res);
             }));
-    }, [])
+    }, [pokeNo])
 
-    const pokeCount = 1281;
-    const [PokeCount, SetPokeCount] = useState(pokeCount);
     useEffect(() => {
         getPokemonCount().then(res => {
-            SetPokeCount(res);
+            setPokeCount(res);
         })
-    })
+    }, [])
 
-    const colors: Colors = {color1: "", color2: ""};
-    const [ColorData, SetColorData] = useState(colors);
 
-    var img = useRef<HTMLImageElement>(null);
-    var getBackgroundImage = () => {
-        var imgObj = img.current as HTMLImageElement;
-        var colorData = extractColor(imgObj);
-        SetColorData(colorData);
+    const img = useRef<HTMLImageElement>(null);
+    const getBackgroundImage = () => {
+        const imgObj = img.current as HTMLImageElement;
+        const resultData = extractColor(imgObj);
+        setColorData(resultData);
     }
-    const formattedID = "#" + PokeNo.toString().padStart(3, "0");
+    const formattedID = "#" + pokeNo.toString().padStart(3, "0");
 
 
     const mySelectButton = <SelectButton 
-        leftButtonAction={() => {SetPokeNo(PokeNo - 1 < 1 ? PokeCount : PokeNo - 1)}} 
-        rightButtonAction={() => {SetPokeNo(PokeNo + 1 > PokeCount ? 1 : PokeNo + 1)}} 
+        leftButtonAction={() => {setPokeNo(pokeNo - 1 < 1 ? pokeCount : pokeNo - 1)}} 
+        rightButtonAction={() => {setPokeNo(pokeNo + 1 > pokeCount ? 1 : pokeNo + 1)}} 
         value={formattedID} />
 
 
     const titleWidth = 140, barWidth = 480;
-
-    const statbars = PokeData.stat.map( v => {
-        return <Statbar name={v.name} value={v.value} max={150} barWidth={barWidth} titleWidth={titleWidth} color={ColorData.color1}/>
-    })
 
     return (
         <main style={{ margin: 48}}>
@@ -58,13 +49,13 @@ function MainPage() {
                 display: "flex",
                 justifyContent: "space-between"
             }}>
-                <h1>{PokeData.name}</h1>
+                <h1>{pokeData.name}</h1>
                 <h1>{formattedID}</h1>
             </div>
             <BlockRow>
                 <Block title="picture">
                     <img 
-                        src={PokeData.image} title={PokeData.name} 
+                        src={pokeData.image} title={pokeData.name} 
                         onLoad={getBackgroundImage} 
                         id="PokeImg" ref={img} 
                         crossOrigin="anonymous"/>
@@ -72,12 +63,32 @@ function MainPage() {
                 </Block>
                 <Block title="stats">
                     <div>
-                        {statbars}
+                        {pokeData.stat.map( v => 
+                        <Statbar 
+                            name={v.name} value={v.value} max={150} 
+                            barWidth={barWidth} titleWidth={titleWidth} color={colorData.color1} 
+                            key={v.name}/>)}
                     </div>
                     {mySelectButton}
                 </Block>
             </BlockRow>
-            <Background color1={ColorData.color1} color2={ColorData.color2}/>
+            <BlockRow>
+                <Block title="type">
+                    <div style={{display: "flex", width: 400, height: "100%"}}>
+                        {pokeData.type.map( t => 
+                        <Nametag key={t} color={colorData.color1}>{t}</Nametag>)}
+                    </div>
+                    {mySelectButton}
+                </Block>
+                <Block title="evolution chain">
+                    <div style={{display: "flex"}}>
+                        {pokeData.evolves.map (e => 
+                        <EvolutionPic name={e.name} src={e.pic} key={e.name}/>)}
+                    </div>
+                    {mySelectButton}
+                </Block>
+            </BlockRow>
+            <Background color1={colorData.color1} color2={colorData.color2}/>
         </main>
     )
 }
