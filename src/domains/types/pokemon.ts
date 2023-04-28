@@ -31,3 +31,10 @@ export type PokemonEvolutionChain = {
   id: number;
   chain: ChainLink;
 };
+
+export type PokemonList = {
+  count: number;
+  next: string;
+  previous: string;
+  results: Array<{ name: string; url: string }>;
+};

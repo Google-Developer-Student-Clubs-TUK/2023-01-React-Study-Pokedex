@@ -1,7 +1,8 @@
 import React from 'react';
+import { RouterProvider } from 'react-router-dom';
 
-import { MainPage } from '@/pages';
+import router from './Router';
 
-const App = () => <MainPage />;
+const App = () => <RouterProvider router={router} />;
 
 export default App;
