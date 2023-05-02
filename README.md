@@ -35,9 +35,11 @@ yarn && yarn dev
 
 ```
 - typescript
-- react js
-- jotai
+- react 18
+- react-router-dom v6
 - react-query
+- react-intersection-observer
+- jotai
 - framer-motion
 - twin-macro
 - yarn
@@ -50,63 +52,89 @@ yarn && yarn dev
 
 ```
 .
-├── components
-│   ├── buttons
-│   │   ├── Button.tsx
-│   │   ├── Button.stories.tsx
-│   │   ├── NextButton.tsx
-│   │   └── PreviousButton.tsx
-│   ├── icons
-│   │   ├── BackgroundIcon.tsx
-│   │   ├── NextIcon.tsx
-│   │   └── PreviousIcon.tsx
-│   ├── ImageView.tsx
-│   ├── ImageView.stories.tsx
-│   ├── Navigation.tsx
-│   └── Navigation.stories.tsx
-└── domains
-    ├── api
-    │   └── pokemon.ts
-    ├── atoms
-    │   ├── color-palette.ts
-    │   └── count.ts
+└── src
+    ├── App.tsx
+    ├── Router.tsx
     ├── components
-    │   ├── background
-    │   │   ├── Background.tsx
-    │   │   └── Background.stories.tsx
-    │   ├── pokedex-evolution-chain
-    │   │   ├── PokedexEvolutionChain.tsx
-    │   │   └── PokedexEvolutionChain.stories.tsx
-    │   ├── pokedex-header
-    │   │   ├── PokedexHeader.tsx
-    │   │   └── PokedexHeader.stories.tsx
-    │   ├── pokedex-picture
-    │   │   ├── PokedexPicture.tsx
-    │   │   └── PokedexPicture.stories.tsx
-    │   ├── pokedex-stats
-    │   │   ├── PokedexStats.tsx
-    │   │   └── PokedexStats.stories.tsx
-    │   ├── pokedex-type
-    │   │   ├── PokedexType.tsx
-    │   │   └── PokedexType.stories.tsx
-    │   ├── Card.tsx
-    │   └── Card.stories.tsx
-    ├── hooks
-    │   ├── queries
-    │   │   ├── useGetPokemonInfoQuery.ts
-    │   │   └── useGetPokemonStatsQuery.ts
-    │   ├── useBackgroundColor.ts
-    │   └── useNavigation.ts
-    ├── types
-    │   └── pokemon.ts
-    ├── utils
-    │   ├── color.ts
-    │   └── fns.ts
+    │   ├── ImageView.stories.ts
+    │   ├── ImageView.tsx
+    │   ├── Navigation.stories.ts
+    │   ├── Navigation.tsx
+    │   ├── buttons
+    │   │   ├── Button.stories.tsx
+    │   │   ├── Button.tsx
+    │   │   ├── NextButton.tsx
+    │   │   ├── PreviousButton.tsx
+    │   │   └── index.ts
+    │   ├── icons
+    │   │   ├── BackgroundIcon.tsx
+    │   │   ├── NextIcon.tsx
+    │   │   ├── PreviousIcon.tsx
+    │   │   └── index.ts
+    │   └── index.ts
+    ├── domains
+    │   ├── api
+    │   │   ├── index.ts
+    │   │   └── pokemon.ts
+    │   ├── atoms
+    │   │   ├── HydrateAtoms.tsx
+    │   │   ├── color-palette.ts
+    │   │   └── count.ts
+    │   ├── components
+    │   │   ├── Card.stories.tsx
+    │   │   ├── Card.tsx
+    │   │   ├── background
+    │   │   │   ├── Background.stories.tsx
+    │   │   │   ├── Background.tsx
+    │   │   │   └── index.ts
+    │   │   ├── index.ts
+    │   │   ├── pokedex-evolution-chain
+    │   │   │   ├── PokedexEvolutionChain.stories.tsx
+    │   │   │   ├── PokedexEvolutionChain.tsx
+    │   │   │   └── index.ts
+    │   │   ├── pokedex-header
+    │   │   │   ├── PokedexHeader.stories.tsx
+    │   │   │   ├── PokedexHeader.tsx
+    │   │   │   └── index.ts
+    │   │   ├── pokedex-list
+    │   │   │   ├── PokedexItem.stories.tsx
+    │   │   │   ├── PokedexItem.tsx
+    │   │   │   └── PokedexList.tsx
+    │   │   ├── pokedex-picture
+    │   │   │   ├── PokedexPicture.stories.tsx
+    │   │   │   ├── PokedexPicture.tsx
+    │   │   │   └── index.ts
+    │   │   ├── pokedex-stats
+    │   │   │   ├── PokedexStats.stories.tsx
+    │   │   │   ├── PokedexStats.tsx
+    │   │   │   └── index.ts
+    │   │   └── pokedex-type
+    │   │       ├── PokedexType.stories.tsx
+    │   │       ├── PokedexType.tsx
+    │   │       └── index.ts
+    │   ├── hooks
+    │   │   ├── index.ts
+    │   │   ├── queries
+    │   │   │   ├── useGetPokemonInfoQueries.ts
+    │   │   │   ├── useGetPokemonListQuery.ts
+    │   │   │   └── useGetPokemonStatsQuery.ts
+    │   │   ├── useBackgroundColor.ts
+    │   │   └── useNavigation.ts
+    │   ├── types
+    │   │   ├── index.ts
+    │   │   └── pokemon.ts
+    │   └── utils
+    │       ├── color.ts
+    │       ├── fns.ts
+    │       └── index.ts
+    ├── main.tsx
     ├── motions
-    │   └── image-view.motion.ts
+    │   ├── image-view.motion.ts
+    │   └── index.ts
     ├── pages
-    │   ├── MainPage.tsx
-    │   └── MainPage.stories.tsx
+    │   ├── PokedexDetailPage.tsx
+    │   ├── PokedexListPage.tsx
+    │   └── index.ts
     └── styles
         └── GlobalStyles.tsx
 ```
@@ -114,7 +142,8 @@ yarn && yarn dev
 ## 회고
 
 [1주차 회고](./docs/1주차.md) <br/>
-[2주차 회고](./docs/2주차.md)
+[2주차 회고](./docs/2주차.md) <br/>
+[3주차 회고](./docs/3주차.md)
 
 ## 프로젝트 진행 방식
 
