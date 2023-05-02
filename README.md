@@ -9,16 +9,6 @@
 - [Pokemon API](https://pokeapi.co/)를 활용하여 포켓몬 도감을 만듭니다.
 - [pokedex](https://lwj.aryandeora.com/pokedex-complete)의 UI를 디자인 시안 삼아 구현하도록 합니다.
 
-## 실행 방법
-
-## URL
-- 배포 링크 : 
-- 웹 vscode 링크 : https://github.dev/Google-Developer-Student-Clubs-TUK/2023-01-React-Study-Pokedex
-
-## 기술 스택
-
-## 폴더 구조
-
 ## 프로젝트 진행 방식
 - 해당 레포지토리를 자신의 레포지토리로 fork 받은 후, 구현을 진행합니다.
 - 기술 스택은 자유롭게 선정하여 진행합니다.
@@ -29,6 +19,14 @@
 - 리드미의 실행 방법, URL, 기술 스택, 폴더 구조 항목에 대해서는 정기 회의 전 각자 작성하도록 합니다.
    - 이외에 리드미에 추가하고 싶은 항목이 있다면 자유롭게 추가하시면 됩니다.
 
+
+## 구현 결과물
+|이름|배포 링크|레포지토리 링크|
+|---|--------|--------|
+|김경지|[URL](https://jqkk.github.io/2023-01-React-Study-Pokedex/)|[URL](https://github.com/Google-Developer-Student-Clubs-TUK/2023-01-React-Study-Pokedex/tree/jqkk)|
+|용준현|[URL](https://pione3r.github.io/poke-encyclopedia/)|[URL](https://github.com/Google-Developer-Student-Clubs-TUK/2023-01-React-Study-Pokedex/tree/pione3r)|
+|김광혁|[URL](https://hyuckkim.github.io/2023-01-React-Study-Pokedex/)|[URL](https://github.com/Google-Developer-Student-Clubs-TUK/2023-01-React-Study-Pokedex/tree/hyuckkim)|
+|정준영||[URL](https://github.com/Jayjunyoung/2023-Pokedex)|
 ## 참고 링크
 - https://pokeapi.co
 - https://github.com/ardeora/astro-tanstack-lwj
